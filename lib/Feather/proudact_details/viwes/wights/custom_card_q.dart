@@ -6,15 +6,15 @@ import 'package:store_app/Feather/proudact_details/viwes/wights/qyt.dart';
 class CustomCardQ extends StatefulWidget {
   final String name;
   final String image;
-  final String price;
+  final int price;
   final String des;
-  
+  final Function (int)onchange;
   const CustomCardQ({
     super.key,
     required this.name,
     required this.image,
     required this.price,
-    required this.des, 
+    required this.des, required this.onchange, 
   });
 
   @override
@@ -57,6 +57,7 @@ class _CustomCardQState extends State<CustomCardQ> {
                     setState(() {
                       if (number > 1) {
                         number--;
+                        widget.onchange(number);
                       }
                     });
                   },
@@ -73,6 +74,7 @@ class _CustomCardQState extends State<CustomCardQ> {
                   onTap: () {
                     setState(() {
                       number++;
+                      widget.onchange(number);
                     });
                   },
                   image: "assets/svgs/plus.svg",

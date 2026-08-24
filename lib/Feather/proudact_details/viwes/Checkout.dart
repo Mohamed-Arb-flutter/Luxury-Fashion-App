@@ -6,8 +6,10 @@ import 'package:store_app/Core/utils/Heder.dart';
 import 'package:store_app/Core/utils/text_style.dart';
 
 import 'package:store_app/Core/widghts/custom_App_bar.dart';
+import 'package:store_app/Feather/proudact_details/viwes/place_order.dart';
 import 'package:store_app/Feather/proudact_details/viwes/wights/cusstom_buttom.dart';
 import 'package:store_app/Feather/proudact_details/viwes/wights/custom_card_q.dart';
+import 'package:store_app/Feather/proudact_details/viwes/wights/custtom_cont.dart';
 
 class Checkout extends StatefulWidget {
   const Checkout({
@@ -19,7 +21,7 @@ class Checkout extends StatefulWidget {
   });
   final String name;
   final String image;
-  final String price;
+  final int price;
   final String des;
 
   @override
@@ -27,6 +29,7 @@ class Checkout extends StatefulWidget {
 }
 
 class _CheckoutState extends State<Checkout> {
+  int select = 1;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +46,11 @@ class _CheckoutState extends State<Checkout> {
               image: widget.image,
               price: widget.price,
               des: widget.des,
+              onchange: (v) {
+                setState(() {
+                  select = v;
+                });
+              },
             ),
             Gap(10),
             Divider(),
@@ -101,15 +109,36 @@ class _CheckoutState extends State<Checkout> {
                   fontsize: 20,
                 ),
                 customText(
-                  text: "\$ ${widget.price}",
+                  text: "\$ ${widget.price * select}",
                   color: Colors.red.shade200,
                   fontsize: 21,
                 ),
               ],
             ),
             Gap(20),
-            CusstomButtom(ch: true, text: "Checkout", onTap: () {}),
+            CusstomButtom(
+              ch: true,
+              text: "Checkout",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PlaceOrder(
+                        title: widget.name,
+                        image: widget.image,
+                        dis: widget.des,
+                        qty: select,
+                        total: select * widget.price,
+                        price: widget.price,
+                      );
+                    },
+                  ),
+                );
+              },
+            ),
             Gap(10),
+           
           ],
         ),
       ),

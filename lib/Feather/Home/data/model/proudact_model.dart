@@ -1,6 +1,6 @@
 class ProudactModel {
   final String name;
-  final double price;
+  final int price;
   final String des;
   final String image;
   ProudactModel({

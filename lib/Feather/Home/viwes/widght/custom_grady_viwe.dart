@@ -29,7 +29,7 @@ class CustomGradyViwe extends StatelessWidget {
               builder: (context) => Checkout(
                 name: item.name,
                 image: item.image,
-                price: item.price.toString(),
+                price: item.price,
                 des: item.des,
               ),
             ),
