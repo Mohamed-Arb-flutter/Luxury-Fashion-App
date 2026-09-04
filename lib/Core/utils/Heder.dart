@@ -13,7 +13,7 @@ class Heder extends StatelessWidget {
           child: customText(
             text: title.toUpperCase(),
             color: Color(0xff111111),
-            space: 10,
+            space: 4,
             fontsize: 25,
           ),
         ),
